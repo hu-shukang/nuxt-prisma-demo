@@ -1,20 +1,19 @@
 <script setup lang="ts">
+import { Button } from '@/components/ui/button';
+
 definePageMeta({
   middleware: ['auth'],
 });
-const { loggedIn, user, session, clear } = useUserSession();
+const { user, session, clear } = useUserSession();
+const { data } = await useFetch('/api/home');
 </script>
 
 <template>
-  <div v-if="loggedIn">
-    <h1>Welcome {{ user.login }}!</h1>
+  <div>
+    <h1>Welcome {{ user }}!</h1>
     <p>Logged in since {{ session.loggedInAt }}</p>
-    <button @click="clear">Logout</button>
-  </div>
-  <div v-else>
-    <h1>Not logged in</h1>
-    <NuxtLink to="/api/auth/github" external>login with github</NuxtLink>
-    <br />
-    <NuxtLink to="/api/auth/cognito" external>login with cognito</NuxtLink>
+    <Button @click="clear">Logout</Button>
+    <hr />
+    {{ data?.message }}
   </div>
 </template>
