@@ -1,4 +1,4 @@
-import type { EventHandler, EventHandlerRequest } from 'h3';
+import type { EventHandler, EventHandlerRequest, H3Error } from 'h3';
 
 export const defineWrappedEventHandler = <T extends EventHandlerRequest, D>(
   handler: EventHandler<T, D>,
@@ -13,8 +13,17 @@ export const defineWrappedEventHandler = <T extends EventHandlerRequest, D>(
         // do something after the route handler
         return response;
       } catch (err) {
-        // Error handling
-        return { err };
+        const h3Error = err as H3Error;
+        logger.error(h3Error);
+        sendError(
+          event,
+          createError({
+            statusCode: h3Error.statusCode || 500,
+            message: h3Error.message,
+            statusMessage: h3Error.statusMessage,
+            data: h3Error.data || {},
+          }),
+        );
       } finally {
         logger.info(`Request completed in ${Date.now() - startTime}ms`);
       }

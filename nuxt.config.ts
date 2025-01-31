@@ -19,4 +19,17 @@ export default defineNuxtConfig({
     plugins: ['utc', 'timezone'],
     defaultLocale: 'ja',
   },
+  nitro: {
+    experimental: {
+      openAPI: true,
+    },
+    openAPI: {
+      route: '/_docs/openapi.json',
+      ui: {
+        scalar: {
+          route: '/_docs/scalar',
+        },
+      },
+    },
+  },
 });
