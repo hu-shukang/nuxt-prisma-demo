@@ -24,6 +24,7 @@ defineOpenAPI({
   method: 'get',
   operationId: 'student-query',
   summary: '查询学生',
+  description: '查询学生列表',
   querySchema: querySchema,
   responseSchema: responseSchema,
 });

@@ -20,6 +20,7 @@ defineOpenAPI({
   method: 'put',
   operationId: 'student-update',
   summary: '更新学生信息',
+  description: '更新学生信息',
   pathParamsSchema: pathParamsSchema,
   bodySchema: bodySchema,
   responseSchema: responseSchema,

@@ -15,6 +15,7 @@ defineOpenAPI({
   method: 'delete',
   operationId: 'student-delete',
   summary: '删除学生',
+  description: '通过ID删除学生',
   pathParamsSchema: pathParamsSchema,
   responseSchema: responseSchema,
 });

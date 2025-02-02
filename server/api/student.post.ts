@@ -16,6 +16,7 @@ defineOpenAPI({
   method: 'post',
   operationId: 'student-add',
   summary: '添加学生',
+  description: '添加学生',
   bodySchema: bodySchema,
   responseSchema: responseSchema,
 });

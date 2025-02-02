@@ -67,6 +67,7 @@ export default defineEventHandler(() => {
       tags: ep.tags,
       operationId: ep.operationId || `${method}_${ep.path}`,
       summary: ep.summary,
+      description: ep.description,
       parameters,
       ...(requestBody ? { requestBody } : {}),
       responses,
