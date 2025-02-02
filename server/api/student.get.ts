@@ -4,8 +4,8 @@ import z from 'zod';
 export const querySchema = z.object({
   name: z.string().optional().describe('学生姓名'),
   address: z.string().optional().describe('学生地址'),
-  pageSize: z.number().int().min(5).default(10).describe('每页数量'),
-  page: z.number().int().min(1).default(1).describe('页码'),
+  pageSize: z.coerce.number().int().min(5).default(10).describe('每页数量'),
+  page: z.coerce.number().int().min(1).default(1).describe('页码'),
 });
 
 export const responseSchema = z.array(
