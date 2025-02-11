@@ -1,13 +1,14 @@
+import { prisma } from '../utils/prisma';
 import { readValidatedBody } from 'h3';
 import z from 'zod';
 
 export const bodySchema = z.object({
   name: z.string().min(1).max(100).describe('学生姓名'),
-  address: z.string().min(10).max(100).describe('学生地址'),
+  address: z.string().min(1).max(100).describe('学生地址'),
 });
 
 export const responseSchema = z.object({
-  message: z.string(),
+  id: z.string(),
 });
 
 defineOpenAPI({
@@ -22,9 +23,9 @@ defineOpenAPI({
 });
 
 export default defineEventHandler(async (event) => {
-  const params = await readValidatedBody(event, bodySchema.parse);
-  console.log(params);
+  const body = await readValidatedBody(event, bodySchema.parse);
+  const { id } = await prisma.student.create({ data: body });
   return {
-    message: 'success',
+    id: id,
   };
 });

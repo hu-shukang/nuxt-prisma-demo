@@ -10,12 +10,14 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "format": "prettier . --write",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "prisma:migrate": "prisma migrate dev --name init"
   },
   "dependencies": {
     "@nuxt/eslint": "^0.7.5",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/tailwindcss": "^6.13.1",
+    "@prisma/client": "^6.3.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dayjs-nuxt": "^2.1.11",
@@ -40,6 +42,8 @@
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
     "prettier": "3.4.2",
+    "prisma": "^6.3.1",
+    "sqlite3": "^5.1.7",
     "typescript": "^5.7.3"
   }
 }
